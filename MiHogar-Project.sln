@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiHogar-App", "MiHogar-App\MiHogar-App.csproj", "{C1D8B506-6B96-F9DD-20D3-943C96E533BB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C1D8B506-6B96-F9DD-20D3-943C96E533BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1D8B506-6B96-F9DD-20D3-943C96E533BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1D8B506-6B96-F9DD-20D3-943C96E533BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1D8B506-6B96-F9DD-20D3-943C96E533BB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C72354DB-0D1C-4D97-A0AB-937302150717}
+	EndGlobalSection
+EndGlobal

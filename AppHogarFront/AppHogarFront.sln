@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.2.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppHogarFront", "AppHogarFront\AppHogarFront.csproj", "{C454A3AA-D8DC-9629-E830-4DFBDFB3EA32}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppHogarFront", "AppHogarFront.csproj", "{695C75C5-3C38-FD36-DEB6-134C86511F04}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -10,15 +10,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C454A3AA-D8DC-9629-E830-4DFBDFB3EA32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C454A3AA-D8DC-9629-E830-4DFBDFB3EA32}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C454A3AA-D8DC-9629-E830-4DFBDFB3EA32}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C454A3AA-D8DC-9629-E830-4DFBDFB3EA32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{695C75C5-3C38-FD36-DEB6-134C86511F04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{695C75C5-3C38-FD36-DEB6-134C86511F04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{695C75C5-3C38-FD36-DEB6-134C86511F04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{695C75C5-3C38-FD36-DEB6-134C86511F04}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {48D21EE4-F644-4721-B2B5-3539AE7E156D}
+		SolutionGuid = {8A42734F-D19F-4BD5-8095-15C1288B01EF}
 	EndGlobalSection
 EndGlobal

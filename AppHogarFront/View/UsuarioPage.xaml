@@ -1,0 +1,44 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:AppHogarFront.ViewModels"
+             x:Class="AppHogarFront.Views.UsuarioPage">
+
+    <ContentPage.BindingContext>
+        <viewmodels:UsuarioViewModel/>
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20"
+                Spacing="10">
+            <Label Text="Iniciar Sesión"
+                    FontSize="24"
+                    HorizontalOptions="Center"/>
+
+            <Entry Placeholder="Nombre de usuario"
+                    Text="{Binding Nombre}"/>
+            <Entry Placeholder="Contraseña"
+                    IsPassword="True"
+                    Text="{Binding Clave}"/>
+
+            <Button Text="Ingresar"
+                    Clicked="OnLoginClicked"/>
+            <Button Text="¿Olvidó su contraseña?"
+                    Clicked="OnForgotPasswordClicked"/>
+
+            <BoxView HeightRequest="1"
+                    Color="Gray"/>
+
+            <Label Text="Crear usuario"
+                    FontAttributes="Bold"/>
+            <Entry Placeholder="Nombre"
+                    Text="{Binding Nombre}"/>
+            <Entry Placeholder="Correo"
+                    Text="{Binding Correo}"/>
+            <Entry Placeholder="Contraseña"
+                    IsPassword="True"
+                    Text="{Binding Clave}"/>
+            <Button Text="Registrar"
+                    Clicked="OnCrearUsuarioClicked"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

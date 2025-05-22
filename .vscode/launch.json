@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-AppHogarApplication<AppHogar>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "co.edu.poli.edu.AppHogar.AppHogarApplication",
+      "projectName": "AppHogar",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}

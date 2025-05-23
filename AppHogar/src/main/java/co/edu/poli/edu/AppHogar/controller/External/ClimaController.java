@@ -1,7 +1,8 @@
+// src/main/java/co/edu/poli.edu.AppHogar/controller/ClimaController.java
 package co.edu.poli.edu.AppHogar.controller.External;
 
-import co.edu.poli.edu.AppHogar.entity.Clima;
-import co.edu.poli.edu.AppHogar.controller.External.ClimaService;
+import co.edu.poli.edu.AppHogar.entity.Clima; // Asegúrate de importar tu entidad Clima
+import co.edu.poli.edu.AppHogar.controller.External.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,9 +27,10 @@ public class ClimaController {
     public ResponseEntity<?> obtenerClimaYGuardar(@PathVariable String ciudad) {
         try {
             Clima clima = climaService.obtenerYGuardarClima(ciudad);
-            return ResponseEntity.ok(clima);
+            // ¡Esta es la línea clave! Debes devolver la entidad 'clima' que obtuviste del servicio.
+            return ResponseEntity.ok(clima); // Esto devolverá un JSON que representa tu entidad Clima
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al obtener o guardar el clima: " + e.getMessage());
         }
     }
 
@@ -44,7 +46,7 @@ public class ClimaController {
         if (clima.isPresent()) {
             return ResponseEntity.ok(clima.get());
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Clima con ID " + id + " no encontrado.");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Clima con ID " + id + " no encontrado en la base de datos.");
         }
     }
 
@@ -54,7 +56,7 @@ public class ClimaController {
         if (clima.isPresent()) {
             return ResponseEntity.ok(clima.get());
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Clima para la ciudad " + ciudad + " no encontrado.");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Clima para la ciudad " + ciudad + " no encontrado en la base de datos.");
         }
     }
 }

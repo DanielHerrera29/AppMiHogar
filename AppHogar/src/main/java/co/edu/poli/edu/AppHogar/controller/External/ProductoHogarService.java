@@ -29,7 +29,6 @@ public class ProductoHogarService {
         CATEGORY_TRANSLATIONS.put("jewelery", "Joyería");
         CATEGORY_TRANSLATIONS.put("men's clothing", "Ropa de Hombre");
         CATEGORY_TRANSLATIONS.put("women's clothing", "Ropa de Mujer");
-        // Puedes añadir más si encuentras otras categorías relevantes o generales
     }
 
     // --- MAPAS ESTÁTICOS PARA SIMULAR TRADUCCIONES DE TÍTULOS Y DESCRIPCIONES ---
@@ -60,7 +59,6 @@ public class ProductoHogarService {
         TITLE_TRANSLATIONS.put("John Hardy Womens Legends Naga Gold & Silver Dragon Station Chain Bracelet", "Pulsera de Cadena de Estación de Dragón de Oro y Plata Naga de John Hardy para Mujer");
         DESCRIPTION_TRANSLATIONS.put("From our Legends Collection, the Naga was inspired by the mythical water dragon that protects the ocean's pearl. Wear facing inward to absorb love and abundance, or outward for protection.", "De nuestra Colección Legends, el Naga se inspiró en el mítico dragón de agua que protege la perla del océano. Llévalo hacia adentro para absorber amor y abundancia, o hacia afuera para protección.");
 
-
     }
 
     @Autowired
@@ -87,7 +85,7 @@ public class ProductoHogarService {
                     String originalTitle = productNode.get("title").asText();
                     String originalDescription = productNode.get("description").asText();
 
-                    // Filtrar por categorías que podrían ser "para el hogar" y que tenemos traducidas
+                    // Filtrar por categorías que podrían ser "para el hogar" 
                     if (CATEGORY_TRANSLATIONS.containsKey(category.toLowerCase())) {
                         ProductoHogar producto = new ProductoHogar();
                         
@@ -100,7 +98,7 @@ public class ProductoHogarService {
                         producto.setImagenUrl(productNode.get("image").asText());
 
                         // 3. Guardar/Actualizar en la base de datos
-                        // Busca por el título YA TRADUCIDO para evitar duplicados si el título original ya fue procesado
+                     
                         Optional<ProductoHogar> existingProduct = productoHogarRepository.findByTitulo(producto.getTitulo());
                         if (existingProduct.isPresent()) {
                             // Si el producto ya existe, actualiza sus datos
@@ -125,7 +123,7 @@ public class ProductoHogarService {
         return productosGuardados;
     }
 
-    // Métodos para obtener productos directamente de la DB
+    // Métodos para obtener productos de la DB
     public List<ProductoHogar> obtenerTodosLosProductosGuardados() {
         return productoHogarRepository.findAll();
     }

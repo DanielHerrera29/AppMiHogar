@@ -1,6 +1,7 @@
+// src/main/java/co/edu/poli.edu.AppHogar/service/ClimaService.java
 package co.edu.poli.edu.AppHogar.controller.External;
 
-import co.edu.poli.edu.AppHogar.entity.Clima;
+import co.edu.poli.edu.AppHogar.entity.Clima; // Asegúrate de que tu entidad Clima esté importada
 import co.edu.poli.edu.AppHogar.repository.ClimaRepository;
 
 import com.fasterxml.jackson.databind.JsonNode;
@@ -39,32 +40,35 @@ public class ClimaService {
             JsonNode geoArray = mapper.readTree(geoResponse);
 
             if (geoArray.isEmpty()) {
-                throw new RuntimeException("Ciudad no encontrada: " + ciudad);
+                throw new RuntimeException("Ciudad no encontrada en el servicio de geocodificación: " + ciudad);
             }
 
             JsonNode location = geoArray.get(0);
             String lat = location.get("lat").asText();
             String lon = location.get("lon").asText();
 
-            // 2. Obtener clima
+            // 2. Obtener datos del clima
             String weatherUrl = String.format(WEATHER_URL, lat, lon);
             String weatherResponse = restTemplate.getForObject(weatherUrl, String.class);
             JsonNode weatherJson = mapper.readTree(weatherResponse);
             JsonNode currentWeatherNode = weatherJson.get("current_weather");
 
             if (currentWeatherNode == null) {
-                throw new RuntimeException("No se encontró información de clima actual para " + ciudad);
+                throw new RuntimeException("No se encontró información de clima actual para " + ciudad + " en la API externa.");
             }
 
             double temperatura = currentWeatherNode.get("temperature").asDouble();
             int weatherCode = currentWeatherNode.get("weathercode").asInt();
+            String timeString = currentWeatherNode.get("time").asText();
+
+            // 3. Traducir el weathercode a descripción en español
             String descripcionClima = mapWeatherCodeToDescription(weatherCode);
 
-            String timeString = currentWeatherNode.get("time").asText();
+            // 4. Formatear la fecha/hora
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
             LocalDateTime ultimaActualizacion = LocalDateTime.parse(timeString, formatter);
 
-            // 3. Guardar/Actualizar en la base de datos
+            // 5. Crear o actualizar la entidad Clima
             Optional<Clima> existingClima = climaRepository.findByCiudad(ciudad);
             Clima climaEntidad;
 
@@ -76,18 +80,25 @@ public class ClimaService {
             }
 
             climaEntidad.setTemperatura(temperatura);
-            climaEntidad.setDescripcion(descripcionClima);
+            climaEntidad.setDescripcion(descripcionClima); // <-- Aquí se asigna la descripción traducida
             climaEntidad.setLatitud(lat);
             climaEntidad.setLongitud(lon);
             climaEntidad.setUltimaActualizacion(ultimaActualizacion);
 
+            // 6. Guardar en la base de datos
             return climaRepository.save(climaEntidad);
 
         } catch (Exception e) {
+            System.err.println("Error al obtener o guardar el clima para " + ciudad + ": " + e.getMessage());
             throw new RuntimeException("Error al obtener o guardar el clima para " + ciudad + ": " + e.getMessage(), e);
         }
     }
 
+    /**
+     * Mapea un código de clima de Open-Meteo a una descripción en español.
+     * @param weatherCode El código de clima.
+     * @return La descripción del clima en español.
+     */
     private String mapWeatherCodeToDescription(int weatherCode) {
         switch (weatherCode) {
             case 0: return "Cielo despejado";
